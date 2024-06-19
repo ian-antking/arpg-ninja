@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://bgghgmgpv7p8u"]
+[gd_scene load_steps=25 format=3 uid="uid://bgghgmgpv7p8u"]
 
 [ext_resource type="Texture2D" uid="uid://byp7ledwgxh7n" path="res://assets/sprites/player.png" id="1_5xqj7"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_tbf04"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1dlnt"]
 atlas = ExtResource("1_5xqj7")
@@ -189,12 +190,13 @@ animations = [{
 radius = 6.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_tbf04")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_38q8f")
 animation = &"walk_down"
 autoplay = "face_down"
-frame_progress = 0.726114
+frame_progress = 0.494757
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
