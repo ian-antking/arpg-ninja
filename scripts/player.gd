@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: int = 35
+@export var speed: int = 50
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func handle_input():
@@ -12,7 +12,6 @@ func update_animation():
 		sprite.stop()
 	else: 
 		var direction: String = "down"
-		print(velocity)
 		if velocity.x < 0: direction = "left"
 		if velocity.x > 0: direction = "right"
 		if velocity.y < 0: direction = "up"
