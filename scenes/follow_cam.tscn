@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bakxiby5cvs0y"]
+
+[ext_resource type="Script" path="res://scripts/FollowCam.gd" id="1_1neyh"]
+
+[node name="FollowCam" type="Camera2D"]
+limit_left = 0
+limit_top = 0
+script = ExtResource("1_1neyh")

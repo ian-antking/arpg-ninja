@@ -10,7 +10,3 @@ func _ready():
 	limit_right = world_size_in_px.x
 	limit_bottom = world_size_in_px.y
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
