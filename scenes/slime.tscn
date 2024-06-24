@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmgfe14mfipfy"]
+
+[ext_resource type="Texture2D" uid="uid://ske7wu286wxt" path="res://assets/sprites/Slime.png" id="1_mabfx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6yha4"]
+radius = 4.0
+height = 14.0
+
+[node name="Slime" type="CharacterBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+texture = ExtResource("1_mabfx")
+hframes = 4
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6yha4")
