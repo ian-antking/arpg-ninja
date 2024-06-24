@@ -2617,12 +2617,16 @@ layer_3/y_sort_origin = 1
 layer_3/z_index = 1
 layer_3/tile_data = PackedInt32Array()
 
+[node name="Slime" parent="." node_paths=PackedStringArray("end_point") instance=ExtResource("6_vogcw")]
+position = Vector2(72, 144)
+end_point = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Slime"]
+position = Vector2(96, 0)
+
 [node name="Player" parent="." instance=ExtResource("1_su1hr")]
 position = Vector2(144, 83)
 
 [node name="FollowCam" parent="Player" node_paths=PackedStringArray("tile_map") instance=ExtResource("5_0o4nr")]
 position = Vector2(2, -4)
 tile_map = NodePath("../../TileMap")
-
-[node name="Slime" parent="." instance=ExtResource("6_vogcw")]
-position = Vector2(73, 110)
