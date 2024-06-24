@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var limit: float = 0.5
 @export var end_point: Marker2D
 
+@onready var sprite = $Sprite2D/AnimationPlayer
+
 var start_position
 var end_position
 
@@ -23,6 +25,6 @@ func update_velocity():
 		
 	velocity = move_direction.normalized()*speed
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	update_velocity()
 	move_and_slide()
