@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed: int = 50
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite = $Sprite2D/AnimationPlayer
 
 func handle_input():
 	var vector: Vector2 = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
