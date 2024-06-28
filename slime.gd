@@ -24,7 +24,19 @@ func update_velocity():
 		change_direction()
 		
 	velocity = move_direction.normalized()*speed
+	
+func update_animation():
+	if velocity.length() == 0:
+		sprite.stop()
+	else: 
+		var direction: String = "down"
+		if velocity.x < 0: direction = "left"
+		if velocity.x > 0: direction = "right"
+		if velocity.y < 0: direction = "up"
+		
+		sprite.play("walk_" + direction)
 
 func _physics_process(_delta):
 	update_velocity()
 	move_and_slide()
+	update_animation()
