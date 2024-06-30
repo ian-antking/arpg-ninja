@@ -189,6 +189,8 @@ position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_dkd8n")
 
 [node name="HurtTimer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]

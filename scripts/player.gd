@@ -4,13 +4,15 @@ signal health_changed
 
 @export var speed: int = 50
 @export var max_health: int = 3
-@export var knockback_power: int = 500
+@export var knockback_power: int = 1000
 
 @onready var sprite = $AnimationPlayer
 @onready var effects = $Effects
 @onready var current_health: int = max_health
 @onready var hurt_timer = $HurtTimer
 
+var is_hurt: bool = false
+var enemy_collisions = []
 
 func _ready():
 	effects.play("RESET")
@@ -34,21 +36,34 @@ func _physics_process(delta):
 	handle_input()
 	move_and_slide()
 	update_animation()
+	if !is_hurt:
+		for area in enemy_collisions:
+			hurt_by_enemy(area)
 	
 func knockback(entity_velocity: Vector2):
 	var knockback_direction =(entity_velocity - velocity).normalized() * knockback_power
 	velocity = knockback_direction
 	move_and_slide()
+	
+func hurt_by_enemy(area):
+	var entity = area.get_parent()
+	current_health -= entity.damage
+	
+	if current_health < 0:
+		current_health = max_health
+	
+	health_changed.emit(current_health)
+	is_hurt = true
+	knockback(entity.velocity)
+	effects.play("hurt_blink")
+	hurt_timer.start()
+	await hurt_timer.timeout
+	effects.play("RESET")
+	is_hurt = false
 
 func _on_hurtbox_area_entered(area):
 	if area.name == "HitBox":
-		var entity = area.get_parent()
-		current_health -= entity.damage
-		if current_health < 0:
-			current_health = max_health
-		health_changed.emit(current_health)
-		knockback(entity.velocity)
-		effects.play("hurt_blink")
-		hurt_timer.start()
-		await hurt_timer.timeout
-		effects.play("RESET")
+		enemy_collisions.append(area)
+
+func _on_hurtbox_area_exited(area):
+	enemy_collisions.erase(area)
