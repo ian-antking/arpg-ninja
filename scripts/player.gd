@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
 @export var speed: int = 50
+@export var max_health: int = 3
+
 @onready var sprite = $Sprite2D/AnimationPlayer
+@onready var current_health: int = max_health
 
 func handle_input():
 	var vector: Vector2 = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
@@ -22,3 +25,11 @@ func _physics_process(delta):
 	handle_input()
 	move_and_slide()
 	update_animation()
+
+func _on_hurtbox_area_entered(area):
+	if area.name == "HitBox":
+		var entity = area.get_parent()
+		current_health -= entity.damage
+		if current_health < 0:
+			current_health = max_health
+		print_debug(current_health)

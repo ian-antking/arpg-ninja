@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://be1407ijk4vir"]
+[gd_scene load_steps=12 format=3 uid="uid://be1407ijk4vir"]
 
 [ext_resource type="PackedScene" uid="uid://bgghgmgpv7p8u" path="res://scenes/player.tscn" id="1_su1hr"]
 [ext_resource type="Texture2D" uid="uid://3ukycwiiq7n7" path="res://assets/tilesets/TilesetNature.png" id="2_xw7jm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bnydtsh7bqkbv" path="res://assets/tilesets/AnimatedFlower.png" id="4_i5dpg"]
 [ext_resource type="PackedScene" uid="uid://bakxiby5cvs0y" path="res://scenes/follow_cam.tscn" id="5_0o4nr"]
 [ext_resource type="PackedScene" uid="uid://cmgfe14mfipfy" path="res://scenes/slime.tscn" id="6_vogcw"]
+[ext_resource type="PackedScene" uid="uid://b17fn27xgd8tv" path="res://scenes/hearts_container.tscn" id="7_bbouh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wch0d"]
 texture = ExtResource("2_xw7jm")
@@ -2631,3 +2632,11 @@ position = Vector2(144, 87)
 [node name="FollowCam" parent="TileMap/Player" node_paths=PackedStringArray("tile_map") instance=ExtResource("5_0o4nr")]
 position = Vector2(2, -4)
 tile_map = NodePath("../..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HeartsContainer" parent="CanvasLayer" instance=ExtResource("7_bbouh")]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = 48.0

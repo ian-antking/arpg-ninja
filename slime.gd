@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed: int = 20
 @export var limit: float = 0.5
 @export var end_point: Marker2D
+@export var damage: int = 1
 
 @onready var sprite = $Sprite2D/AnimationPlayer
 
