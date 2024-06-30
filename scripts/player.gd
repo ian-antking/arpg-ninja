@@ -4,6 +4,7 @@ signal health_changed
 
 @export var speed: int = 50
 @export var max_health: int = 3
+@export var knockback_power: int = 500
 
 @onready var sprite = $Sprite2D/AnimationPlayer
 @onready var current_health: int = max_health
@@ -27,6 +28,11 @@ func _physics_process(delta):
 	handle_input()
 	move_and_slide()
 	update_animation()
+	
+func knockback(entity_velocity: Vector2):
+	var knockback_direction =(entity_velocity - velocity).normalized() * knockback_power
+	velocity = knockback_direction
+	move_and_slide()
 
 func _on_hurtbox_area_entered(area):
 	if area.name == "HitBox":
@@ -35,3 +41,4 @@ func _on_hurtbox_area_entered(area):
 		if current_health < 0:
 			current_health = max_health
 		health_changed.emit(current_health)
+		knockback(entity.velocity)
