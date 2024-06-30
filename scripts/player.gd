@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal health_changed
+
 @export var speed: int = 50
 @export var max_health: int = 3
 
@@ -32,4 +34,4 @@ func _on_hurtbox_area_entered(area):
 		current_health -= entity.damage
 		if current_health < 0:
 			current_health = max_health
-		print_debug(current_health)
+		health_changed.emit(current_health)

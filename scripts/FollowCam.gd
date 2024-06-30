@@ -2,7 +2,6 @@ extends Camera2D
 
 @export var tile_map: TileMap
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	var map_rect = tile_map.get_used_rect()
 	var tile_size = tile_map.cell_quadrant_size
