@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var end_point: Marker2D
 @export var damage: int = 1
 
-@onready var sprite = $Sprite2D/AnimationPlayer
+@onready var sprite = $AnimationPlayer
 
 var start_position
 var end_position

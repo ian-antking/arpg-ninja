@@ -6,8 +6,14 @@ signal health_changed
 @export var max_health: int = 3
 @export var knockback_power: int = 500
 
-@onready var sprite = $Sprite2D/AnimationPlayer
+@onready var sprite = $AnimationPlayer
+@onready var effects = $Effects
 @onready var current_health: int = max_health
+@onready var hurt_timer = $HurtTimer
+
+
+func _ready():
+	effects.play("RESET")
 
 func handle_input():
 	var vector: Vector2 = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
@@ -42,3 +48,7 @@ func _on_hurtbox_area_entered(area):
 			current_health = max_health
 		health_changed.emit(current_health)
 		knockback(entity.velocity)
+		effects.play("hurt_blink")
+		hurt_timer.start()
+		await hurt_timer.timeout
+		effects.play("RESET")
